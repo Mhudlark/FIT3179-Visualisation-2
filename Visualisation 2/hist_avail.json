@@ -1,0 +1,28 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": { "url": "data/airbnb.csv" },
+  "width": 600,
+  "height": 400,
+  "background": "#f5f5f5",
+  "transform": [
+    {
+      "filter": "datum.availability >= 0 && datum.availability <= 365"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "bin": {
+        "step": 10
+      },
+      "field": "availability",
+      "type": "quantitative",
+      "title": "Availability 365 days of the year"
+    },
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "title": "Number of listings"
+    }
+  }
+}

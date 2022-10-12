@@ -1,0 +1,21 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": { "url": "data/airbnb.csv" },
+  "width": 600,
+  "height": 400,
+  "background": "#f5f5f5",
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "bin": {
+        "step": 20
+      },
+      "field": "service_fee",
+      "title": "Service fee (USD)"
+    },
+    "y": {
+      "aggregate": "count",
+      "title": "Number of listings"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 500,
+  "background": "#f5f5f5",
+  "projection": {
+    "type": "albersUsa"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/ny.geojson",
+        "format": {
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape"
+      },
+      "encoding": {
+        "color": {
+          "value": "#e1e1e1e1"
+        },
+        "tooltip": [
+          {
+            "field": "properties.boro_name",
+            "type": "nominal",
+            "title": "Borough"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/airbnb.csv"
+      },
+      "mark": {
+        "type": "circle"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "long",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "size": { "value": 10 },
+        "color": { "value": "steelblue" }
+      }
+    }
+  ]
+}

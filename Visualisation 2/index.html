@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FIT3179 Visualisation 2</title>
+
+    <!-- Vega lite -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Styling -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+
+    <!-- ============================================================================================= -->
+
+    <div class="col title-container">
+      <h1>A Visualisation of New York City Airbnb Data</h1>
+      <h3>FIT3179 Visualisation II - Hugh Henry 29668255</h3>
+    </div>
+
+    <!-- ============================================================================================= -->
+
+    <div class="col">
+      <h2>Airbnb Listings</h2>
+      <div class="row sb gap-64">
+        <div id="map-listings"></div>
+        <div class="col gap-48">
+          <div class="col gap-8">
+            <h4>Projected on the US</h5>
+            <div id="map-listings-us"></div>
+          </div>
+          <p>
+            Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+            Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+            Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+            Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+            Blah Blah Blah Blah Blah
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================================================= -->
+
+    <div class="col gap-32">
+      <div class="row gap-48" style="justify-content: space-around;">
+        <button onclick="setHistogram('hist-price-container')">
+          Price per night
+        </button>
+        <button onclick="setHistogram('hist-availability-container')">
+          Service fee
+        </button>
+        <button onclick="setHistogram('hist-construction-year-container')">
+          Year of construction
+        </button>
+        <button onclick="setHistogram('hist-service-fee-container')">
+          Availability
+        </button>
+      </div>
+
+      <div class="col" style="display: block; align-items: center;" id="hist-price-container">
+        <h2>Year of construction vs price per night of listing</h2>
+        <div id="hist-price"></div>
+      </div>
+
+      <div class="col" style="display: none; align-items: center;" id="hist-availability-container">
+        <h2>Distribution of listing's availability</h2>
+        <div id="hist-availability"></div>
+      </div>
+
+      <div class="col" style="display: none; align-items: center;" id="hist-construction-year-container">
+        <h2>Distribution of listing's year of construction</h2>
+        <div id="hist-construction-year"></div>
+      </div>
+
+      <div class="col" style="display: none; justify-content: center;" id="hist-service-fee-container">
+        <h2>Year of construction vs price per night of listing</h2>
+        <div id="hist-service-fee"></div>
+      </div>
+    </div>
+
+    <!-- ============================================================================================= -->
+
+    <div class="col">
+      <h2>Year of construction vs price per night of listing</h2>
+      <div class="row sb gap-64">
+        <div id="dot-contruction-year-price"></div>
+        <div class="col gap-48">
+          <p>
+            Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+            Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+            Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+            Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+            Blah Blah Blah Blah Blah
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================================================= -->
+
+    <div class="col">
+      <h2>Year of construction vs service fee</h2>
+      <div class="row sb gap-64">
+        <div id="dot-contruction-year-service-fee"></div>
+        <div class="col gap-48">
+          <p>
+            Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+            Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+            Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+            Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+            Blah Blah Blah Blah Blah
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================================================= -->
+
+    
+
+    <script type="text/javascript">
+
+      // Maps
+      var mapListings = "map_listings.json";
+      vegaEmbed("#map-listings", mapListings, { actions: false })
+        .then(function (result) {})
+        .catch(console.error);
+
+      var mapListingsUS = "map_listings_us.json";
+      vegaEmbed("#map-listings-us", mapListingsUS, { actions: false })
+        .then(function (result) {})
+        .catch(console.error);
+
+      // Histograms
+      var histPrice = "hist_price.json";
+      vegaEmbed("#hist-price", histPrice, { actions: false })
+        .then(function (result) {})
+        .catch(console.error);
+
+      var histServiceFee = "hist_service_fee.json";
+      vegaEmbed("#hist-service-fee", histServiceFee, { actions: false })
+        .then(function (result) {})
+        .catch(console.error);
+
+      var histAvail = "hist_avail.json";
+      vegaEmbed("#hist-availability", histAvail, { actions: false })
+        .then(function (result) {})
+        .catch(console.error);
+
+      var histConstruct = "hist_construct.json";
+      vegaEmbed("#hist-construction-year", histConstruct, { actions: false })
+        .then(function (result) {})
+        .catch(console.error);
+
+      // Dotplots
+      var dotConstructPrice = "dot_construct_price.json";
+      vegaEmbed("#dot-contruction-year-price", dotConstructPrice, {
+        actions: false,
+      })
+        .then(function (result) {})
+        .catch(console.error);
+
+      var dotConstructServiceFee = "dot_construct_service_fee.json";
+      vegaEmbed("#dot-contruction-year-service-fee", dotConstructServiceFee, {
+        actions: false,
+      })
+        .then(function (result) {})
+        .catch(console.error);
+
+
+
+      // Scripts
+      document.getElementById(histId)
+      
+
+      function setHistogram(id) {
+
+        const histogramIds = [
+        "hist-price-container",
+        "hist-availability-container",
+        "hist-construction-year-container",
+        "hist-service-fee-container",
+      ]
+
+        console.log(id);
+        histogramIds.forEach((histId) => {
+          console.log(document.getElementById(histId).id);
+          if (histId === id) {            
+            document.getElementById(histId).style.display = "block";
+          } else {
+            document.getElementById(histId).style.display = "none";
+          }
+        })
+      }
+    </script>
+  </body>
+</html>
