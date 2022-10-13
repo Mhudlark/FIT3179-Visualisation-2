@@ -33,11 +33,11 @@
 
     <!-- ============================================================================================= -->
 
-    <div class="col">
+    <div class="col gap-8">
       <h2>Airbnb Listings</h2>
-      <div class="row sb gap-64">
+      <div class="row sb gap-32">
         <div id="map-listings"></div>
-        <div class="col gap-48">
+        <div class="col gap-32">
           <div class="col gap-8">
             <h4>Projected on the US</h5>
             <div id="map-listings-us"></div>
@@ -56,75 +56,73 @@
     <!-- ============================================================================================= -->
 
     <div class="col gap-32">
-      <div class="row gap-48" style="justify-content: space-around;">
-        <button onclick="setHistogram('hist-price-container')">
+      <div class="row gap-48 buttons-container" style="justify-content: space-around;">
+        <button id="button-hist-price" class="selected" onclick="setHistogram('hist-price-container')">
           Price per night
         </button>
-        <button onclick="setHistogram('hist-availability-container')">
+        <button id="button-hist-service-fee" onclick="setHistogram('hist-service-fee-container')">
           Service fee
         </button>
-        <button onclick="setHistogram('hist-construction-year-container')">
+        <button id="button-hist-construction-year" onclick="setHistogram('hist-construction-year-container')">
           Year of construction
         </button>
-        <button onclick="setHistogram('hist-service-fee-container')">
+        <button id="button-hist-availability" onclick="setHistogram('hist-availability-container')">
           Availability
         </button>
       </div>
 
-      <div class="col" style="display: block; align-items: center;" id="hist-price-container">
-        <h2>Year of construction vs price per night of listing</h2>
+      <div class="col gap-8" style="display: flex; align-items: center;" id="hist-price-container">
+        <h2>Distribution of listing's price per night</h2>
         <div id="hist-price"></div>
       </div>
 
-      <div class="col" style="display: none; align-items: center;" id="hist-availability-container">
-        <h2>Distribution of listing's availability</h2>
-        <div id="hist-availability"></div>
+      <div class="col gap-8" style="display: none; align-items: center;" id="hist-service-fee-container">
+        <h2>Distribution of listing's service fee</h2>
+        <div id="hist-service-fee"></div>
       </div>
 
-      <div class="col" style="display: none; align-items: center;" id="hist-construction-year-container">
+      <div class="col gap-8" style="display: none; align-items: center;" id="hist-construction-year-container">
         <h2>Distribution of listing's year of construction</h2>
         <div id="hist-construction-year"></div>
       </div>
 
-      <div class="col" style="display: none; justify-content: center;" id="hist-service-fee-container">
-        <h2>Year of construction vs price per night of listing</h2>
-        <div id="hist-service-fee"></div>
+      <div class="col gap-8" style="display: none; align-items: center;" id="hist-availability-container">
+        <h2>Distribution of listing's availability</h2>
+        <div id="hist-availability"></div>
       </div>
+
+      
     </div>
 
     <!-- ============================================================================================= -->
 
-    <div class="col">
+    <div class="col gap-8">
       <h2>Year of construction vs price per night of listing</h2>
-      <div class="row sb gap-64">
+      <div class="row sb gap-32">
         <div id="dot-contruction-year-price"></div>
-        <div class="col gap-48">
-          <p>
+        <p>
             Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
             Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
             Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
             Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
             Blah Blah Blah Blah Blah
           </p>
-        </div>
       </div>
     </div>
 
     <!-- ============================================================================================= -->
 
-    <div class="col">
+    <div class="col gap-8">
       <h2>Year of construction vs service fee</h2>
-      <div class="row sb gap-64">
+      <div class="row sb gap-32">
         <div id="dot-contruction-year-service-fee"></div>
-        <div class="col gap-48">
-          <p>
+        <p>
             Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
             Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
             Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
             Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
             Blah Blah Blah Blah Blah
           </p>
-        </div>
       </div>
     </div>
 
@@ -190,19 +188,28 @@
       function setHistogram(id) {
 
         const histogramIds = [
-        "hist-price-container",
-        "hist-availability-container",
-        "hist-construction-year-container",
-        "hist-service-fee-container",
-      ]
+          "hist-price-container",
+          "hist-availability-container",
+          "hist-construction-year-container",
+          "hist-service-fee-container",
+        ]
+
+        const buttonIds = [
+          "button-hist-price",
+          "button-hist-availability",
+          "button-hist-construction-year",
+          "button-hist-service-fee",
+        ]
 
         console.log(id);
-        histogramIds.forEach((histId) => {
-          console.log(document.getElementById(histId).id);
+        histogramIds.forEach((histId, index) => {
+          const buttonId = buttonIds[index];
           if (histId === id) {            
-            document.getElementById(histId).style.display = "block";
+            document.getElementById(histId).style.display = "flex";
+            document.getElementById(buttonId).className = "selected";
           } else {
             document.getElementById(histId).style.display = "none";
+            document.getElementById(buttonId).className = "";
           }
         })
       }
