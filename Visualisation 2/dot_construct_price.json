@@ -6,6 +6,24 @@
   "data": {
     "url": "data/airbnb.csv"
   },
+  "config": { "view": { "stroke": null } },
+  "params": [
+    {
+      "name": "Minimum_Nights",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 365,
+        "step": 1
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.min_nights >= Minimum_Nights"
+    }
+  ],
   "mark": "circle",
   "encoding": {
     "size": {
@@ -14,13 +32,28 @@
     "x": {
       "field": "construction_year",
       "type": "temporal",
-      "title": "Year of construction"
+      "title": "Year of construction",
+      "axis": { "domain": false, "grid": false, "ticks": false }
     },
     "y": {
       "aggregate": "mean",
       "field": "price",
       "type": "quantitative",
-      "title": "Average Price"
-    }
+      "title": "Average Price",
+      "axis": { "domain": false, "grid": false, "ticks": false }
+    },
+    "tooltip": [
+      {
+        "aggregate": "mean",
+        "field": "price",
+        "type": "quantitative",
+        "title": "Average Price"
+      },
+      {
+        "field": "construction_year",
+        "type": "temporal",
+        "title": "Year of construction"
+      }
+    ]
   }
 }

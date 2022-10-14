@@ -1,6 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": { "url": "data/airbnb.csv" },
+  "config": { "view": { "stroke": null } },
   "width": 600,
   "height": 400,
   "background": "#f5f5f5",
@@ -22,7 +23,8 @@
     "y": {
       "aggregate": "count",
       "type": "quantitative",
-      "title": "Number of listings"
+      "title": "Number of listings",
+      "axis": { "domain": false, "grid": false, "ticks": false }
     }
   }
 }
