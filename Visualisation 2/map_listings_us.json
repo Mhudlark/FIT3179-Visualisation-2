@@ -1,7 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 200,
-  "height": 150,
   "background": "#f5f5f5",
   "projection": {
     "type": "albersUsa"
@@ -21,14 +19,7 @@
       "encoding": {
         "color": {
           "value": "#d1d1d1e1"
-        },
-        "tooltip": [
-          {
-            "field": "properties.boro_name",
-            "type": "nominal",
-            "title": "Borough"
-          }
-        ]
+        }
       }
     },
     {
